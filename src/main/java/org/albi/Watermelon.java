@@ -5,6 +5,7 @@ import javafx.util.Pair;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Generated;
+import lombok.RequiredArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,13 +13,9 @@ import java.util.OptionalInt;
 
 @Builder
 @Generated
-@Data
+@RequiredArgsConstructor
 public class Watermelon {
     private final int weight;
-
-    public Watermelon(int weight){
-        this.weight = weight;
-    }
 
     public Pair<Integer, Integer> getWatermelonDivisionWeight() {
         int result = calculateWatermelonLowestDivisor();
