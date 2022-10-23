@@ -4,57 +4,50 @@ import lombok.Builder;
 import lombok.Generated;
 import lombok.RequiredArgsConstructor;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
-
 @Builder
 @Generated
 @RequiredArgsConstructor
 public class LongestCommonPrefix {
 
     public String longestCommonPrefix(String[] strs) {
-
-
-        return "";
+        if (strs == null || strs.length == 0) return "";
+        return longestCommonPrefix(strs, 0 , strs.length - 1);
     }
 
-//    private List<Character> commonPrefixs (String[] strs, int strIndex){
-//        if (strIndex >= strs.length) return Collections.emptyList();
-//        String str0 = strs[strIndex];
-//        String str1 = strs[strIndex+1];
-//        return IntStream.of(0, str0.length())
-//                .filter(index -> str0.charAt(index) == str1.charAt(index))
-//                .mapToObj(number -> (char)number)
-//                .toList();
-//    }
+    private String longestCommonPrefix(String[] strs, int l, int r) {
+        if (l == r) {
+            return strs[l];
+        }
+        else {
+            int mid = (l + r)/2;
+            String lcpLeft =   longestCommonPrefix(strs, l , mid);
+            String lcpRight =  longestCommonPrefix(strs, mid + 1,r);
+            return commonPrefix(lcpLeft, lcpRight);
+        }
+    }
+
+    String commonPrefix(String left,String right) {
+        int min = Math.min(left.length(), right.length());
+        for (int i = 0; i < min; i++) {
+            if ( left.charAt(i) != right.charAt(i) )
+                return left.substring(0, i);
+        }
+        return left.substring(0, min);
+    }
 
     public static void main(String[] args) {
-        String [] strs = {"flower","flow","flight"};
-        String [] strs2 = {"dog","racecar","car"};
-        LongestCommonPrefix longestCommonPrefix = LongestCommonPrefix.builder().build();
-        String str0 = strs[0];
-        String str1 = strs[1];
-//        List<Character> characters = IntStream.range(0, str0.length())
-//                .filter(index -> str0.charAt(index) == str1.charAt(index))
-//                .mapToObj(number -> (char)number)
-//                .collect(Collectors.toList());
-
-        List<Character> characters = IntStream.range(0, str0.length())
-                .filter(i -> i < str1.length())
-                .filter(index -> str0.charAt(index) == str1.charAt(index))
-                .mapToObj(number -> (char) number)
-                .toList();
-//        String characters2 = IntStream.range(0, strs.length)
-//                .filter(i -> strs[i].length() <= 5)
-//                .mapToObj(i -> strs[i])
-//                .toList().toString();
-
-//        System.out.println(longestCommonPrefix.commonPrefixs(strs,0).toString());
-//        System.out.println(characterStream);
-        System.out.println(characters);
-//        System.out.println(longestCommonPrefix.commonPrefixs(strs2,0).toString());
+        String[] strs = {"flower", "flow", "flight"};
+        String[] strs2 = {"dog", "racecar", "car"};
+        String[] strs3 = {"ab", "a"};
+        String[] strs4 = {"abab","aba",""};
+        LongestCommonPrefix commonPrefix = LongestCommonPrefix.builder().build();
+        String s3 = commonPrefix.longestCommonPrefix(strs3);
+        String s = commonPrefix.longestCommonPrefix(strs);
+        String s2 = commonPrefix.longestCommonPrefix(strs2);
+        String s4 = commonPrefix.longestCommonPrefix(strs4);
+        System.out.println(s);
+        System.out.println("S2: " + s2);
+        System.out.println("S3: " + s3);
+        System.out.println("S4: " + s4);
     }
 }
