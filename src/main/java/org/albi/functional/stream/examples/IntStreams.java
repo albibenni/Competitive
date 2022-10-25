@@ -1,13 +1,12 @@
 package org.albi.functional.stream.examples;
 
 
-import com.amigoscode.beans.Person;
-import com.amigoscode.mockdata.MockData;
-import org.junit.jupiter.api.Test;
+import org.albi.functional.stream.beans.Person;
+import org.albi.functional.stream.mockdata.MockData;
+import org.junit.Test;
 
 import java.util.List;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class IntStreams {
 

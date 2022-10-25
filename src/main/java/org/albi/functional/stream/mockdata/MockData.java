@@ -1,11 +1,12 @@
 package org.albi.functional.stream.mockdata;
 
 
-import com.amigoscode.beans.Car;
-import com.amigoscode.beans.Person;
+
 import com.google.common.io.Resources;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
+import org.albi.functional.stream.beans.Car;
+import org.albi.functional.stream.beans.Person;
 import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;
