@@ -4,7 +4,7 @@ import org.albi.functional.stream.beans.Car;
 import org.albi.functional.stream.beans.Person;
 import org.albi.functional.stream.beans.PersonDTO;
 import org.albi.functional.stream.mockdata.MockData;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.Arrays;

@@ -3,7 +3,7 @@ package org.albi.functional.stream.examples;
 
 import org.albi.functional.stream.beans.Car;
 import org.albi.functional.stream.mockdata.MockData;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.util.DoubleSummaryStatistics;

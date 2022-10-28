@@ -2,7 +2,7 @@ package org.albi.functional.stream.examples;
 
 import org.albi.functional.stream.beans.Person;
 import org.albi.functional.stream.mockdata.MockData;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.ArrayList;
