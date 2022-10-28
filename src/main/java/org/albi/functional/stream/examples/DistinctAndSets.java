@@ -1,10 +1,10 @@
 package org.albi.functional.stream.examples;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.Assert.*;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import static org.assertj.core.api.Assertions.assertThat;
 
 
 public class DistinctAndSets {
