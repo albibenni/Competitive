@@ -27,6 +27,7 @@ Notice that the order of the output and the order of the triplets does not matte
             return List.of(integers);
         }
         List<List<Integer>> result = new ArrayList<>();
+        Arrays.sort(nums);
         int i, j, k, a, b, c;
         for (i = 0; i < nums.length - 2; i++) {
             a = nums[i];
@@ -36,11 +37,12 @@ Notice that the order of the output and the order of the triplets does not matte
                     c = nums[k];
                     List<Integer> integers = tripletSumEqualZero(a, b, c, result);
                     if (integers == null) continue;
+                    if (integers.get(0)>0) break;
                     result.add(integers);
                 }
             }
         }
-        if (result.size() == 0) return Collections.emptyList();
+        if (result.isEmpty()) return Collections.emptyList();
 
         return result;
     }
