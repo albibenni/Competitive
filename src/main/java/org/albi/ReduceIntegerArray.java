@@ -1,48 +1,44 @@
 package org.albi;
 
-import javafx.util.Pair;
+import lombok.Builder;
 
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+@Builder
 public class ReduceIntegerArray {
     public int minSetSize(int[] arr) {
         List<List<Integer>> listOfIntegers = new ArrayList<>();
         if (arr.length == 0) return 0;
-        if (arr.length== 1)return 1;
+        if (arr.length == 1) return 1;
         Arrays.sort(arr);
         bucketNumbers(arr, listOfIntegers);
 
         int afterBucketSize = listOfIntegers.size();
         if (afterBucketSize == 0) return 0;
         if (afterBucketSize == 1) return 1;
-        if (afterBucketSize > 1){
-            canHalveOrMore(listOfIntegers);
-        }
+        getBiggest(listOfIntegers, arr);
 
         return 0;
     }
 
-    private void canHalveOrMore(List<List<Integer>> listOfIntegers) {
-        int max = 0;
-        int lessMax = 0;
-        int listMaxIndex = 0;
-        int listLessMaxIndex = 0;
+    private int getBiggest(List<List<Integer>> listOfIntegers, int[] arr) {
+        List<Integer> setValues = new ArrayList<>();
+        int listSize = 0;
         for (int i = 0; i < listOfIntegers.size(); i++) {
-            int listSize = listOfIntegers.get(i).size();
-            if (max == 0) {
-                lessMax = max;
-                max = listSize;
-                listLessMaxIndex = listMaxIndex;
-                listMaxIndex = i;
-            } else {
-                if (max < listSize) {
-
-                    max = listSize;
-                }
+            listSize += listOfIntegers.get(i).size();
+            if (canHalveTheArrayOrMore(listSize, arr)) {
+                setValues.add(listOfIntegers.get(i).get(0));
+                break;
             }
         }
+        return setValues.size();
+    }
+
+    private boolean canHalveTheArrayOrMore(int listSize, int[] arr) {
+        return listSize >= arr.length;
     }
 
     private static void bucketNumbers(int[] arr, List<List<Integer>> listOfIntegers) {
@@ -50,10 +46,9 @@ public class ReduceIntegerArray {
         List<Integer> list = new ArrayList<>();
         for (int i = 0; i < arr.length; i++) {
             int iInt = arr[i];
-            if (selectedNumb == iInt){
+            if (selectedNumb == iInt) {
                 list.add(iInt);
-            }
-            else {
+            } else {
                 listOfIntegers.add(list);
                 list = new ArrayList<>();
             }
@@ -61,6 +56,11 @@ public class ReduceIntegerArray {
     }
 
     public static void main(String[] args) {
+        int[] arr = {
+                3, 3, 3, 3, 5, 5, 5, 2, 2, 7
+        };
+        ReduceIntegerArray reduceIntegerArray = ReduceIntegerArray.builder().build();
+        System.out.println(reduceIntegerArray.minSetSize(arr));
 
     }
 }
