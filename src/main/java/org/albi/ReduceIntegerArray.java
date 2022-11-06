@@ -11,34 +11,38 @@ import java.util.List;
 public class ReduceIntegerArray {
     public int minSetSize(int[] arr) {
         List<List<Integer>> listOfIntegers = new ArrayList<>();
-        if (arr.length == 0) return 0;
-        if (arr.length == 1) return 1;
+        int arrLength = arr.length;
+        if (arrLength == 0) return 0;
+        if (arrLength == 1) return 1;
         Arrays.sort(arr);
         bucketNumbers(arr, listOfIntegers);
 
         int afterBucketSize = listOfIntegers.size();
         if (afterBucketSize == 0) return 0;
         if (afterBucketSize == 1) return 1;
-        getBiggest(listOfIntegers, arr);
-
-        return 0;
+        return getBiggest(listOfIntegers, arrLength / 2);
     }
 
-    private int getBiggest(List<List<Integer>> listOfIntegers, int[] arr) {
-        List<Integer> setValues = new ArrayList<>();
+    private int getBiggest(List<List<Integer>> listOfIntegers, int halfLengthArr) {
         int listSize = 0;
-        for (int i = 0; i < listOfIntegers.size(); i++) {
-            listSize += listOfIntegers.get(i).size();
-            if (canHalveTheArrayOrMore(listSize, arr)) {
-                setValues.add(listOfIntegers.get(i).get(0));
-                break;
+        int returnValue = 0;
+        List<Integer> setValues = new ArrayList<>();
+        for (List<Integer> listOfInteger : listOfIntegers) {
+            listSize += listOfInteger.size();
+            Integer presentValue = listOfInteger.get(0);
+            setValues.add(presentValue);
+            int actualSize = setValues.size();
+            if (canHalveTheArrayOrMore(listSize, halfLengthArr)) {
+                listSize = 0;
+                if (actualSize < returnValue) returnValue = actualSize;
+                setValues = new ArrayList<>();
             }
         }
-        return setValues.size();
+        return returnValue;
     }
 
-    private boolean canHalveTheArrayOrMore(int listSize, int[] arr) {
-        return listSize >= arr.length;
+    private boolean canHalveTheArrayOrMore(int listSize, int halfLengthArr) {
+        return halfLengthArr <= listSize;
     }
 
     private static void bucketNumbers(int[] arr, List<List<Integer>> listOfIntegers) {
@@ -50,7 +54,11 @@ public class ReduceIntegerArray {
                 list.add(iInt);
             } else {
                 listOfIntegers.add(list);
+                selectedNumb = iInt;
                 list = new ArrayList<>();
+                list.add(iInt);
+                if (i == arr.length - 1)
+                    listOfIntegers.add(list);
             }
         }
     }
