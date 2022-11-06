@@ -18,22 +18,23 @@ public class ReduceIntegerArray implements Comparator<List<Integer>> {
         if (afterBucketSize == 0) return 0;
         if (afterBucketSize == 1) return 1;
         Collections.sort(listOfIntegers, this::compare);
-        return getBiggest(listOfIntegers, arrLength / 2);
+        return getMinNumbOfIntegers(listOfIntegers, arrLength / 2);
     }
 
 
-    private int getBiggest(List<List<Integer>> listOfIntegers, int halfLengthArr) {
+    private int getMinNumbOfIntegers(List<List<Integer>> listOfIntegers, int halfLengthArr) {
         int listSize = 0;
         int returnValue = halfLengthArr;
         int currentValuesConsidered = 1;
         int valuesAdded = 0;
-        if (canHalveTheArrayOrMore(listOfIntegers.get(0).size(), halfLengthArr)) {
-            if (currentValuesConsidered < returnValue) return 1;
+        int listOfIntegersSize = listOfIntegers.size();
+        if (canHalveTheArrayOrMore(listOfIntegers.get(listOfIntegersSize-1).size(), halfLengthArr)) {
+            if (currentValuesConsidered <= returnValue) return 1;
         }
-        for (int i = 0; i < listOfIntegers.size(); i++) {
+        for (int i = listOfIntegersSize - 1; i >= 0; i--) {
             int firstConsideredSize = listOfIntegers.get(i).size();
             listSize = firstConsideredSize;
-            for (int j = i + 1; j < listOfIntegers.size(); j++) {
+            for (int j = i - 1; j >= 0; j--) {
                 listSize += listOfIntegers.get(j).size();
                 valuesAdded++;
                 if (canHalveTheArrayOrMore(listSize, halfLengthArr)) {
@@ -82,10 +83,10 @@ public class ReduceIntegerArray implements Comparator<List<Integer>> {
         int[] arr = {
                 3, 3, 3, 3, 5, 5, 5, 2, 2, 7
         };
-        int[] arr2 = {
+        int[] arr3 = {
                 9, 77, 63, 22, 92, 9, 14, 54, 8, 38, 18, 19, 38, 68, 58, 19
         };
-        int[] arr3 = {
+        int[] arr2 = {
                 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
         };
         int[] arr4 = {
