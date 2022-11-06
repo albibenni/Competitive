@@ -118,6 +118,7 @@ class SolutionReduceIntegerArray {
         int freq = arrLength;
         while (removed < half) {
             result++;
+            //checks num of recurrencies starting at the arr.lenght -> freq
             while (counting[freq] == 0) --freq;
             removed += freq;
             --counting[freq];
@@ -143,4 +144,43 @@ class SolutionReduceIntegerArray {
 
     }
 
+}
+
+class FastestSolutionReduceIntegerArray {
+    public int minSetSize(int[] arr) {
+
+        int maxVar = 0;
+        for (int a : arr) {
+            maxVar = Math.max(maxVar, a);
+        }
+
+        int[] freq = new int[maxVar + 1];
+
+        int maxFreq = 0;
+        for (int a : arr) {
+            maxFreq = Math.max(maxFreq, ++freq[a]);
+        }
+
+        int goal = arr.length / 2;
+        if (maxFreq >= goal) return 1;
+
+        int[] freqCount = new int[maxFreq + 1];
+        for (int a : freq) {
+            if (a > 0) {
+                freqCount[a]++;
+            }
+        }
+
+        int ans = 0;
+        int temp = 0;
+
+        for (int i = maxFreq; i >= 0; i--) {
+            while (freqCount[i]-- > 0) {
+                ans++;
+                if ((temp += i) >= goal) return ans;
+            }
+        }
+
+        return ans;
+    }
 }
