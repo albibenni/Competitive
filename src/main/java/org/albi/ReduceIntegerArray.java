@@ -17,7 +17,7 @@ public class ReduceIntegerArray implements Comparator<List<Integer>> {
         int afterBucketSize = listOfIntegers.size();
         if (afterBucketSize == 0) return 0;
         if (afterBucketSize == 1) return 1;
-        Collections.sort(listOfIntegers, this::compare);
+        listOfIntegers.sort(this);
         return getMinNumbOfIntegers(listOfIntegers, arrLength / 2);
     }
 
@@ -97,6 +97,50 @@ public class ReduceIntegerArray implements Comparator<List<Integer>> {
         System.out.println(reduceIntegerArray.minSetSize(arr2));
 
     }
+}
 
+@Builder
+class SolutionReduceIntegerArray {
+    public int minSetSize(int[] arr) {
+        int arrLength = arr.length;
+        HashMap<Integer, Integer> cnt = new HashMap<>();
+        //get recurrences in value field
+        for (int x : arr) cnt.put(x, cnt.getOrDefault(x, 0) + 1);
+
+        int[] counting = new int[arrLength + 1];
+        //putting into the bucket related to the cnt.values related to the frequency eg value = 6 -> number present 6 times
+        //in the collection
+        for (int freq : cnt.values()) ++counting[freq];
+
+        int result = 0;
+        int removed = 0;
+        int half = arrLength / 2;
+        int freq = arrLength;
+        while (removed < half) {
+            result++;
+            while (counting[freq] == 0) --freq;
+            removed += freq;
+            --counting[freq];
+        }
+        return result;
+    }
+    public static void main(String[] args) {
+        int[] arr = {
+                3, 3, 3, 3, 5, 5, 5, 2, 2, 7
+        };
+        int[] arr3 = {
+                9, 77, 63, 22, 92, 9, 14, 54, 8, 38, 18, 19, 38, 68, 58, 19
+        };
+        int[] arr4 = {
+                1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+        };
+        int[] arr2 = {
+                7, 7, 7, 7, 7, 7
+        };
+        SolutionReduceIntegerArray reduceIntegerArray = SolutionReduceIntegerArray.builder().build();
+//        System.out.println(reduceIntegerArray.minSetSize(arr));
+        System.out.println(reduceIntegerArray.minSetSize(arr2));
+
+    }
 
 }
