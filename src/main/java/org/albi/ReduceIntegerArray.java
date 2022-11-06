@@ -2,13 +2,10 @@ package org.albi;
 
 import lombok.Builder;
 
-import java.sql.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 @Builder
-public class ReduceIntegerArray {
+public class ReduceIntegerArray implements Comparator<List<Integer>> {
     public int minSetSize(int[] arr) {
         List<List<Integer>> listOfIntegers = new ArrayList<>();
         int arrLength = arr.length;
@@ -20,23 +17,37 @@ public class ReduceIntegerArray {
         int afterBucketSize = listOfIntegers.size();
         if (afterBucketSize == 0) return 0;
         if (afterBucketSize == 1) return 1;
+        Collections.sort(listOfIntegers, this::compare);
         return getBiggest(listOfIntegers, arrLength / 2);
     }
 
+
     private int getBiggest(List<List<Integer>> listOfIntegers, int halfLengthArr) {
         int listSize = 0;
-        int returnValue = 0;
-        List<Integer> setValues = new ArrayList<>();
-        for (List<Integer> listOfInteger : listOfIntegers) {
-            listSize += listOfInteger.size();
-            Integer presentValue = listOfInteger.get(0);
-            setValues.add(presentValue);
-            int actualSize = setValues.size();
-            if (canHalveTheArrayOrMore(listSize, halfLengthArr)) {
-                listSize = 0;
-                if (actualSize < returnValue) returnValue = actualSize;
-                setValues = new ArrayList<>();
+        int returnValue = halfLengthArr;
+        int currentValuesConsidered = 1;
+        int valuesAdded = 0;
+        if (canHalveTheArrayOrMore(listOfIntegers.get(0).size(), halfLengthArr)) {
+            if (currentValuesConsidered < returnValue) return 1;
+        }
+        for (int i = 0; i < listOfIntegers.size(); i++) {
+            int firstConsideredSize = listOfIntegers.get(i).size();
+            listSize = firstConsideredSize;
+            for (int j = i + 1; j < listOfIntegers.size(); j++) {
+                listSize += listOfIntegers.get(j).size();
+                valuesAdded++;
+                if (canHalveTheArrayOrMore(listSize, halfLengthArr)) {
+                    currentValuesConsidered += valuesAdded;
+                    if (currentValuesConsidered < returnValue) {
+                        returnValue = currentValuesConsidered;
+                    }
+                    valuesAdded = 0;
+                    currentValuesConsidered = 1;
+                    listSize = firstConsideredSize;
+                }
+
             }
+
         }
         return returnValue;
     }
@@ -57,18 +68,34 @@ public class ReduceIntegerArray {
                 selectedNumb = iInt;
                 list = new ArrayList<>();
                 list.add(iInt);
-                if (i == arr.length - 1)
-                    listOfIntegers.add(list);
             }
+            if (i == arr.length - 1) listOfIntegers.add(list);
         }
+    }
+
+    @Override
+    public int compare(List<Integer> l1, List<Integer> l2) {
+        return Integer.compare(l1.size(), l2.size());
     }
 
     public static void main(String[] args) {
         int[] arr = {
                 3, 3, 3, 3, 5, 5, 5, 2, 2, 7
         };
+        int[] arr2 = {
+                9, 77, 63, 22, 92, 9, 14, 54, 8, 38, 18, 19, 38, 68, 58, 19
+        };
+        int[] arr3 = {
+                1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+        };
+        int[] arr4 = {
+                7, 7, 7, 7, 7, 7
+        };
         ReduceIntegerArray reduceIntegerArray = ReduceIntegerArray.builder().build();
-        System.out.println(reduceIntegerArray.minSetSize(arr));
+//        System.out.println(reduceIntegerArray.minSetSize(arr));
+        System.out.println(reduceIntegerArray.minSetSize(arr2));
 
     }
+
+
 }
