@@ -30,7 +30,7 @@ public class ThreeeSumClosest {
         return num + num1 + num2;
     }
     public int threeSumClosest(int[] nums, int target) {
-        int minDif = target;
+        int minDif = Integer.MAX_VALUE;
         int result = 0;
         Arrays.sort(nums);
         for (int i = 0; i < nums.length - 2; i++) {
