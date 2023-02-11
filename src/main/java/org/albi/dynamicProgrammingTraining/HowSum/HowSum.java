@@ -9,15 +9,15 @@ import java.util.List;
 //should return an array containing any combination of elements
 // that add up to exactly to targetSum else null
 public class HowSum {
-    public static int[] howSum(int targetSum, int[] numbers) {
-//        List<Integer> remainderResult = new ArrayList<>();
-        if (targetSum == 0) return new int[0];
+    public static List<Integer> howSum(int targetSum, int[] numbers) {
+        if (targetSum == 0) return Collections.emptyList();
         if (targetSum < 0) return null;
-        for (int number : numbers) {
+        for (int i = 0; i < numbers.length; i++) {
+            int number = numbers[i];
             int remainder = targetSum - number;
-            int[] remainderResult = howSum(remainder, numbers);
+            List<Integer> remainderResult = howSum(remainder, numbers);
             if (remainderResult != null) {
-//                remainderResult.add(number);
+                remainderResult.add(number);
                 return remainderResult;
             }
         }
@@ -29,8 +29,7 @@ public class HowSum {
         int[] numbers10 = {5, 3, 4, 7};
         int[] numbers2 = {5, 3, 4, 5};
         int[] numbers3 = {5, 3, 4, 5};
-        int[] result = howSum(7, numbers1);
-        assert result != null;
-        Arrays.stream(result).forEach(System.out::println);
+        List<Integer> result = howSum(7, numbers1);
+        result.forEach(System.out::println);
     }
 }
