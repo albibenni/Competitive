@@ -24,6 +24,9 @@ const canConstructMemo = (target, wordBank, memo = {}) => {
     return false;
 }
 
+// Space: O(m*m)
+// Time: O(n*m*m)
+
 const canConstructBruteForce = (target, wordBank) => {
     if (target === "") return true;
 
@@ -38,6 +41,9 @@ const canConstructBruteForce = (target, wordBank) => {
     }
     return false;
 }
+
+//Space C: O(m+m)
+// Time: O(m*n^m)
 
 
 // console.log(canConstructBruteForce("skataboard", ["bo", "rd", "ate", "t", "ska", "boar"])); // ->false
