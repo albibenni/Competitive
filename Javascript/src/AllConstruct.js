@@ -22,6 +22,8 @@ function allConstruct(target, wordBank, memo = {}) {
     memo[target] = allTheWays;
     return allTheWays
 }
+// Space: O(m)
+// Time: O(n^m) no matter what
 
 console.log(allConstruct('abcdef', ["ab", "abc", "cd", "def", "abcd", "ef", "c"])) //
 console.log(allConstruct('hello', ["cat", "mouse", "dog"])) // -> []
