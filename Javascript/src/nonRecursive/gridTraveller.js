@@ -31,4 +31,4 @@ console.log(gridTraveller(1, 1)) // -> 1
 console.log(gridTraveller(2, 3)) // -> 3
 console.log(gridTraveller(3, 3)) // -> 3
 console.log(gridTraveller(3, 3)) // -> 6
-console.log(gridTraveller(18, 18)) // ->
+console.log(gridTraveller(18, 18)) // ->2333606220
