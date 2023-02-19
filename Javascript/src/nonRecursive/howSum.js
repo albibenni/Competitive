@@ -5,25 +5,25 @@
 
 const howSum = (targetSum, numbers) => {
     let result = [];
-    const selectionArray = Array(targetSum + 1).fill(null);
-    selectionArray[0] = [];
+    const table = Array(targetSum + 1).fill(null);
+    table[0] = [];
 
     for (let i = 0; i <= targetSum; i++) {
-        if (selectionArray[i] !== null) {
+        if (table[i] !== null) {
             for (let number of numbers) {
                 let indexNumberSum = i + number;
                 if (indexNumberSum <= targetSum) {
-                    if (selectionArray[indexNumberSum] === null) selectionArray[indexNumberSum] = [];
-                    selectionArray[indexNumberSum].push(...selectionArray[number], number);
+                    if (table[indexNumberSum] === null) table[indexNumberSum] = [];
+                    table[indexNumberSum] = [...table[i], number];
                 }
             }
         }
     }
-    return selectionArray[targetSum];
+    return table[targetSum];
 }
 
-// Space: O(m*m)
-// Time: O(n*m*m)
+// Space: O(m*m )
+// Time: O(m*m*n)
 console.log(howSum(7, [2, 3]));
 // console.log(howSum(7, [5, 3, 4, 7]));
 // console.log(howSum(7, [2, 4]));
