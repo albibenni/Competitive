@@ -13,15 +13,16 @@ You may assume that all imput numbers are nonnegative.
 const canSum = (targetSum, numbers) => {
     const table = Array(targetSum + 1).fill(false);
     table[0] = true;
-    for (let i = 0; i <= table.length; i++) {
+
+    for (let i = 0; i <= targetSum; i++) {
         if (table[i] === true) {
-            for (const number of numbers) {
+            for (let number of numbers) {
                 let tableNewIndex = i + number;
-                if (table.length < tableNewIndex) table[tableNewIndex] = true;
+                if (table.length > tableNewIndex) table[tableNewIndex] = true;
             }
         }
     }
-    console.log(table);
+    // console.log(table);
 
     return table[targetSum];
 }
@@ -33,7 +34,7 @@ const canSum = (targetSum, numbers) => {
 
 
 console.log(canSum(7, [2, 3]));
-// console.log(canSum(7, [5, 3, 4, 7]));
-// console.log(canSum(7, [2, 4]));
-// console.log(canSum(8, [2, 3, 5]));
-// console.log(canSum(300, [7, 14]));
+console.log(canSum(7, [5, 3, 4, 7]));
+console.log(canSum(7, [2, 4]));
+console.log(canSum(8, [2, 3, 5]));
+console.log(canSum(300, [7, 14]));
