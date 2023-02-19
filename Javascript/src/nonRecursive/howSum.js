@@ -6,22 +6,20 @@
 const howSum = (targetSum, numbers) => {
     let result = [];
     const selectionArray = Array(targetSum + 1).fill(null);
-    selectionArray[0] = 0;
+    selectionArray[0] = [];
 
     for (let i = 0; i <= targetSum; i++) {
         if (selectionArray[i] !== null) {
             for (let number of numbers) {
                 let indexNumberSum = i + number;
                 if (indexNumberSum <= targetSum) {
-                    result.push(number);
-                    targetSum[indexNumberSum] = true;
+                    if (selectionArray[indexNumberSum] === null) selectionArray[indexNumberSum] = [];
+                    selectionArray[indexNumberSum].push(...selectionArray[number], number);
                 }
-                if (selectionArray[targetSum] === true) return result.push(i);
             }
-            result = [];
         }
     }
-    return null;
+    return selectionArray[targetSum];
 }
 
 // Space: O(m*m)
