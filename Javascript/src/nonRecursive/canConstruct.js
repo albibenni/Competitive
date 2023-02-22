@@ -26,8 +26,8 @@ const canConstruct = (target, wordBank) => {
 }
 
 /*
-// Space: O(m*m*n)
-// Time: O(m)
+// Time: O(m*m*n)
+// Space: O(m)
  */
 console.log(canConstruct("skataboard", ["bo", "rd", "ate", "t", "ska", "boar"])); // ->false
 console.log(canConstruct("", ["bo", "rd", "ate", "t", "ska", "boar"])); // -> true
