@@ -1,4 +1,4 @@
-package main
+package binaryTrees
 
 type BinaryNode struct {
 	left  *BinaryNode
