@@ -15,8 +15,8 @@ const depthFirstIT = (root) => {
     while (stack.length > 0) {
         const current = stack.pop();
         console.log(current);
-        if (current.right() !== null) stack.push(current.right());
-        if (current.left() !== null) stack.push(current.left());
+        if (current.right) stack.push(current.right());
+        if (current.left) stack.push(current.left());
     }
 }
 
