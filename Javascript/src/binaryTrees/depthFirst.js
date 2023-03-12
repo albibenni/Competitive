@@ -13,7 +13,8 @@ class Node {
 
 const depthFirstIT = (root) => {
     if (root === null) return [];
-    const result = []
+
+    const result = [];
     const stack = [root];
     while (stack.length > 0) {
         const current = stack.pop();
@@ -22,6 +23,13 @@ const depthFirstIT = (root) => {
         if (current.left) stack.push(current.left);
     }
     return result;
+}
+
+const depthFirstRec = (root) => {
+    if (root === null) return [];
+    const right = depthFirstRec(root.right);
+    const left = depthFirstRec(root.left);
+    return [root.val, ...left, right];
 }
 
 const a = new Node('a');
@@ -39,3 +47,4 @@ c.right = f;
 
 
 depthFirstIT(a);
+depthFirstRec(a);
