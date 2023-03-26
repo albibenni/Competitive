@@ -29,7 +29,7 @@ const depthFirstRec = (root) => {
     if (root === null) return [];
     const right = depthFirstRec(root.right);
     const left = depthFirstRec(root.left);
-    return [root.val, ...left, right];
+    return [root.val, ...left, ...right];
 }
 
 const a = new Node('a');
@@ -46,5 +46,7 @@ b.right = e;
 c.right = f;
 
 
-depthFirstIT(a);
-depthFirstRec(a);
+const depthFirstIT1 = depthFirstIT(a);
+console.log(depthFirstIT1);
+const depthFirstRec1 = depthFirstRec(a);
+console.log(depthFirstRec1);
