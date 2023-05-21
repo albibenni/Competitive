@@ -1,3 +1,3 @@
 const test = () => {
-  return '231'
-}
+  return '231';
+};
