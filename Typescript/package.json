@@ -1,12 +1,12 @@
 {
   "name": "Typescript",
   "private": true,
+  "main": "app.js",
   "scripts": {
     "start": "todo",
     "tsc": "tsc --watch"
   },
   "dependencies": {
-    "@types/node": "20.2.1",
     "typescript": "5.0.4"
   },
   "devDependencies": {
@@ -15,7 +15,6 @@
     "eslint": "^8.41.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-react": "^7.32.2",
     "prettier": "^2.8.8"
   }
 }

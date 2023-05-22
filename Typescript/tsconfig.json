@@ -11,12 +11,13 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "outDir": "out",
+    "outDir": "./dist",
     "incremental": true,
-    "paths": {
-      "@/*": ["./src/*"]
-    }
+
+
+    "sourceMap": true,
+    "rootDir": "./src",
   },
-  "include": ["**/*.ts", "**/*.tsx"],
+  "include": ["**/*.ts"],
   "exclude": ["node_modules"]
 }

@@ -5,3 +5,4 @@ build
 Golang.iml
 /Typescript/node_modules
 Typescript.iml
+dist
