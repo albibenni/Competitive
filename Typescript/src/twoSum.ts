@@ -1,8 +1,13 @@
-export function twoSum(arr: number[], sum: number): number | null {
-  arr.map(n1 => {
-    return arr.find(n2 => n2 + n1 === sum);
-  });
-  return null;
+export function twoSum(arr: number[], sum: number): Map<number, number> | null {
+  const index: Map<number, number> = new Map();
+  //return the index
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = i; j < arr.length; j++) {
+      arr[i] + arr[j] === sum && index.set(i, j);
+    }
+  }
+  if (index.size === 0) return null;
+  return index;
 }
 
 console.log(twoSum([1, 2, 3], 5));
