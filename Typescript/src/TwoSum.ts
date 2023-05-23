@@ -1,7 +1,4 @@
-function twoSumCustomMap(
-  arr: number[],
-  sum: number
-): Map<number, number> | null {
+function twoSumMap(arr: number[], sum: number): Map<number, number> | null {
   if (sum === 0) return new Map();
   if (arr.length === 0) return null;
   const index: Map<number, number> = new Map();
@@ -16,9 +13,9 @@ function twoSumCustomMap(
   return index;
 }
 
-console.log(twoSumCustomMap([1, 2, 3], 5));
-console.log(twoSumCustomMap([1, 3, 7, 9, 2], 11));
-console.log(twoSumCustomMap([], 5));
+console.log(twoSumMap([1, 2, 3], 5));
+console.log(twoSumMap([1, 3, 7, 9, 2], 11));
+console.log(twoSumMap([], 5));
 
 // Leetcode
 /*
