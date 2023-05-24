@@ -1,4 +1,7 @@
-function twoSumMap(arr: number[], sum: number): Map<number, number> | null {
+function twoSumMultipleMap(
+  arr: number[],
+  sum: number
+): Map<number, number> | null {
   if (sum === 0) return new Map();
   if (arr.length === 0) return null;
   const index: Map<number, number> = new Map();
@@ -31,6 +34,20 @@ function twoSum(nums: number[], target: number): number[] | null {
     for (let j = i + 1; j < nums.length; j++) {
       if (nums[j] === numToFind) return [i, j];
     }
+  }
+  return null;
+}
+
+function twoSumMap(nums: number[], target: number): number[] | null {
+  const numsMap = new Map<number, number>();
+  for (let i = 0; i < nums.length; i++) {
+    const currentMapVal = numsMap.get(nums[i]);
+    if (currentMapVal !== undefined) {
+      return [currentMapVal, i];
+    }
+    const numToFind = target - nums[i];
+    //if
+    numsMap.set(numToFind, i);
   }
   return null;
 }
