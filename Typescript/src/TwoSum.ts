@@ -16,9 +16,9 @@ function twoSumMultipleMap(
   return index;
 }
 
-console.log(twoSumMap([1, 2, 3], 5));
-console.log(twoSumMap([1, 3, 7, 9, 2], 11));
-console.log(twoSumMap([], 5));
+// console.log(twoSumMap([1, 2, 3], 5));
+// console.log(twoSumMap([1, 3, 7, 9, 2], 11));
+// console.log(twoSumMap([], 5));
 
 // Leetcode
 /*
@@ -51,3 +51,7 @@ function twoSumMap(nums: number[], target: number): number[] | null {
   }
   return null;
 }
+
+console.log(twoSumMap([1, 2, 3], 5));
+console.log(twoSumMap([1, 3, 7, 9, 2], 11));
+console.log(twoSumMap([], 5));
