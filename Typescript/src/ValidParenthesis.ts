@@ -14,21 +14,25 @@ function isValid(s: string): boolean {
     ['[', ']'],
     ['{', '}'],
   ]);
+  const initParenth: string[] = [];
   for (let i = 0; i < s.length; i++) {
     const equivalentClosingBracket = parenthesisMap.get(s[i]);
-    if (
-      equivalentClosingBracket === undefined ||
-      equivalentClosingBracket !== s[++i]
-    )
-      return false;
+    if (equivalentClosingBracket) initParenth.push(s[i]);
+    else {
+      if (parenthesisMap.get(initParenth[initParenth.length - 1]) === s[i])
+        initParenth.pop();
+      else return false;
+    }
   }
-  return true;
+  return initParenth.length <= 0;
 }
 
 const input1 = '()[]{}';
+const input4 = '({[]})';
 const input2 = '()';
 const input3 = '(]';
 
 console.log(isValid(input1));
+console.log(isValid(input4));
 console.log(isValid(input2));
 console.log(isValid(input3));
