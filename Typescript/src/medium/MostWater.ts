@@ -27,7 +27,7 @@ function maxArea(height: number[]): number {
     const base = b - a;
     const currArea = base * minHeight;
     result = Math.max(currArea, result);
-    height[a] > height[b] ? a++ : b++;
+    height[a] > height[b] ? b-- : a++;
   }
   return result;
 }
