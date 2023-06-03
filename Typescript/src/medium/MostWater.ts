@@ -6,7 +6,8 @@ Return the maximum amount of water a container can store.
 Notice that you may not slant the container.
  */
 
-function maxArea(height: number[]): number {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function maxAreaBF(height: number[]): number {
   let result = 0;
   for (let i = 0; i < height.length; i++) {
     for (let j = i + 1; j < height.length; j++) {
@@ -17,5 +18,17 @@ function maxArea(height: number[]): number {
   }
   return result;
 }
+function maxArea(height: number[]): number {
+  let result = 0;
+  for (let a = 0; a < height.length; a++) {
+    for (let b = height.length - 1; b > a; b--) {
+      const minHeight = Math.min(height[b], height[a]);
+      const currArea = (b - a) * minHeight;
+      result = Math.max(currArea, result);
+    }
+  }
+  return result;
+}
 
 console.log(maxArea([1, 8, 6, 2, 5, 4, 8, 3, 7]));
+console.log(maxArea([2, 3, 4, 5, 18, 17, 6]));
