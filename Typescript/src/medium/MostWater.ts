@@ -20,12 +20,14 @@ function maxAreaBF(height: number[]): number {
 }
 function maxArea(height: number[]): number {
   let result = 0;
-  for (let a = 0; a < height.length; a++) {
-    for (let b = height.length - 1; b > a; b--) {
-      const minHeight = Math.min(height[b], height[a]);
-      const currArea = (b - a) * minHeight;
-      result = Math.max(currArea, result);
-    }
+  let a = 0;
+  let b = height.length - 1;
+  while (a < b) {
+    const minHeight = Math.min(height[b], height[a]);
+    const base = b - a;
+    const currArea = base * minHeight;
+    result = Math.max(currArea, result);
+    height[a] > height[b] ? a++ : b++;
   }
   return result;
 }
