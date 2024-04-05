@@ -1,20 +1,18 @@
 {
   "name": "Typescript",
-  "private": true,
-  "main": "app.js",
+  "main": "/dist/app.js",
   "scripts": {
-    "start": "todo",
-    "tsc": "tsc --watch"
-  },
-  "dependencies": {
-    "typescript": "5.0.4"
+    "start": "vite",
+    "tsc": "tsc --watch",
   },
   "devDependencies": {
+    "typescript": "5.4.5",
     "@typescript-eslint/eslint-plugin": "^5.59.6",
     "@typescript-eslint/parser": "^5.59.6",
     "eslint": "^8.41.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",
-    "prettier": "^2.8.8"
+    "prettier": "^2.8.8",
+    "vite": "^5.0.2"
   }
 }
